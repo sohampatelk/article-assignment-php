@@ -47,4 +47,29 @@ class ArticleList {
         }
     }
 
+
+    // Find a particular article.
+    public function findArticleByIndex($id = FALSE)
+    { // Check if the submission is a number (integer.)
+        if (is_integer($id)) { // Check if the article at this INDEX even EXISTS!?
+            if (isset($this->allArticleList[$id])) { // Retrieve that article from the array!
+                $foundArticle = new Article(
+                    $this->allArticleList[$id]->id,
+                    $this->allArticleList[$id]->title,
+                    $this->allArticleList[$id]->content
+                );
+                // Output that article!
+                $foundArticle->output();
+            }
+            // If the article is not found...
+            else {
+                echo '<p>Sorry, we couldn\'t find a article at ID:' . $id . '!</p>';
+            }
+        }
+        // No ID, or an invalid ID was passed.
+        else {
+            echo '<p>No ID, or an invalid ID was passed; unable to find article for ID: ' . $id . '.</p>';
+        }
+    }
+    
 }

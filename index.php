@@ -22,6 +22,23 @@ include './ArticleList.Class.php'
     $articleList = new ArticleList(dirname(__FILE__) . '/articles.json');
     $articleList->output();
     ?>
+
+    <h2>Find Article by index number</h2>
+    <form action="./index.php" method="GET">
+        <label for="find-article">
+            Find Article by Index:
+            <input type="text" name="find-article" id="find-article">
+        </label>
+        <input type="submit" value="Find">
+    </form>
+    <?php
+    if (!empty($_GET)) //making sure something is submitted
+    {
+        $index=intval($_GET['find-article'])-1;
+        var_dump($index);
+        $articleList->findArticleByIndex($index); 
+    }
+    ?>
 </body>
 
 </html>
